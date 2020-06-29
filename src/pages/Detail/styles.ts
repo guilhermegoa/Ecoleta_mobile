@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 24,
     marginTop: 8,
-    color: colors.grey100,
+    color: colors.grey200,
   },
 
   address: {
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto_400Regular",
     lineHeight: 24,
     marginTop: 8,
-    color: colors.grey100,
+    color: colors.grey200,
   },
 
   footer: {
     borderTopWidth: StyleSheet.hairlineWidth,
-    borderColor: colors.grey200,
+    borderColor: colors.grey300,
     paddingVertical: 20,
     paddingHorizontal: 32,
     flexDirection: "row",

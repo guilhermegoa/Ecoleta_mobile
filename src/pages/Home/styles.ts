@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 
   description: {
-    color: colors.grey100,
+    color: colors.grey200,
     fontSize: 16,
     marginTop: 16,
     fontFamily: "Roboto_400Regular",

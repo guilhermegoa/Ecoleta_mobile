@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import Constants from "expo-constants";
+import colors from "../../utils/colors";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
   },
 
   description: {
-    color: "#6C6C80",
+    color: colors.grey200,
     fontSize: 16,
     marginTop: 4,
     fontFamily: "Roboto_400Regular",
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   mapMarkerContainer: {
     width: 90,
     height: 70,
-    backgroundColor: "#34CB79",
+    backgroundColor: colors.primary,
     flexDirection: "column",
     borderRadius: 8,
     overflow: "hidden",
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   mapMarkerTitle: {
     flex: 1,
     fontFamily: "Roboto_400Regular",
-    color: "#FFF",
+    color: colors.white,
     fontSize: 13,
     lineHeight: 23,
   },
@@ -70,9 +71,9 @@ const styles = StyleSheet.create({
   },
 
   item: {
-    backgroundColor: "#fff",
+    backgroundColor: colors.white,
     borderWidth: 2,
-    borderColor: "#eee",
+    borderColor: colors.grey100,
     height: 120,
     width: 120,
     borderRadius: 8,
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   },
 
   selectedItem: {
-    borderColor: "#34CB79",
+    borderColor: colors.primary,
     borderWidth: 2,
   },
 
