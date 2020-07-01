@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 32,
-    paddingTop: 20 + Constants.statusBarHeight,
+    paddingTop: 16 + Constants.statusBarHeight,
   },
 
   title: {
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     marginRight: 8,
     alignItems: "center",
     justifyContent: "space-between",
-
     textAlign: "center",
   },
 

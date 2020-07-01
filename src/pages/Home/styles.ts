@@ -7,6 +7,14 @@ const styles = StyleSheet.create({
     padding: 32,
   },
 
+  createPoint: {
+    color: colors.grey200,
+    fontFamily: "Roboto_400Regular",
+    fontWeight: "bold",
+    textAlign: "right",
+    paddingTop: 8,
+  },
+
   main: {
     flex: 1,
     justifyContent: "center",

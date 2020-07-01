@@ -6,6 +6,7 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  TouchableOpacity,
 } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
@@ -72,6 +73,10 @@ const Home = () => {
     });
   };
 
+  const handleNavigateToCreatePoint = () => {
+    navigation.navigate("CreatePoint");
+  };
+
   return (
     <KeyboardAvoidingView
       style={{ flex: 1 }}
@@ -82,6 +87,9 @@ const Home = () => {
         style={styles.container}
         imageStyle={{ width: 274, height: 368 }}
       >
+        <TouchableOpacity onPress={handleNavigateToCreatePoint}>
+          <Text style={styles.createPoint}>Cadastre um ponto</Text>
+        </TouchableOpacity>
         <View style={styles.main}>
           <Image source={require("../../assets/logo.png")} />
           <View>
