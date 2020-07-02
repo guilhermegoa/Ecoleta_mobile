@@ -14,8 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 
 import apiIBGE from "../../services/apiIBGE";
 import styles from "./styles";
-
-import RNPickerSelect from "react-native-picker-select";
+import colors from "../../utils/colors";
+import PickerSelect from "../../components/PickerSelect/index";
 
 interface IBGEUFResponse {
   sigla: string;
@@ -35,8 +35,6 @@ const Home = () => {
   const [selectedUf, setSelectedUf] = useState("");
   const [cities, setCities] = useState<OptionsPicker[]>([]);
   const [selectedCity, setSelectedCity] = useState("");
-  const [uf, setUf] = useState<string>("");
-  const [city, setCity] = useState<string>("");
 
   const navigation = useNavigation();
 
@@ -68,8 +66,8 @@ const Home = () => {
 
   const handleNavigateToMap = () => {
     navigation.navigate("Points", {
-      uf,
-      city,
+      selectedUf,
+      selectedCity,
     });
   };
 
@@ -90,6 +88,7 @@ const Home = () => {
         <TouchableOpacity onPress={handleNavigateToCreatePoint}>
           <Text style={styles.createPoint}>Cadastre um ponto</Text>
         </TouchableOpacity>
+
         <View style={styles.main}>
           <Image source={require("../../assets/logo.png")} />
           <View>
@@ -102,28 +101,24 @@ const Home = () => {
           </View>
         </View>
 
-        <View style={styles.footer}>
-          <RNPickerSelect
-            placeholder={{
-              label: "Selecione um Estado.",
-            }}
-            onValueChange={(data) => setSelectedUf(data)}
+        <View>
+          <PickerSelect
+            setSelected={setSelectedUf}
             items={ufs}
-            value={selectedUf}
+            selected={selectedUf}
+            placeholder="Selecione um Estado."
           />
-          <RNPickerSelect
-            placeholder={{
-              label: "Selecione um Cidade.",
-            }}
-            onValueChange={(data) => setSelectedCity(data)}
+          <PickerSelect
+            setSelected={setSelectedCity}
             items={cities}
-            value={selectedCity}
+            selected={selectedCity}
+            placeholder="Selecione um Cidade."
           />
 
           <RectButton style={styles.button} onPress={handleNavigateToMap}>
             <View style={styles.buttonIcon}>
               <Text>
-                <Icon name="arrow-right" color="#FFF" size={24} />
+                <Icon name="arrow-right" color={colors.white} size={24} />
               </Text>
             </View>
             <Text style={styles.buttonText}>Entrar</Text>

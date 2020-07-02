@@ -37,19 +37,6 @@ const styles = StyleSheet.create({
     lineHeight: 24,
   },
 
-  footer: {},
-
-  select: {},
-
-  input: {
-    height: 60,
-    backgroundColor: colors.white,
-    borderRadius: 10,
-    marginBottom: 8,
-    paddingHorizontal: 24,
-    fontSize: 16,
-  },
-
   button: {
     backgroundColor: colors.primary,
     height: 60,
