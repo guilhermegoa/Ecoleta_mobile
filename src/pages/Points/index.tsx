@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Feather as Icon } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   View,
@@ -14,6 +13,7 @@ import { SvgUri } from "react-native-svg";
 import api from "../../services/api";
 import * as Location from "expo-location";
 
+import BackScreen from "../../components/BackScreen/index";
 import styles from "./styles";
 
 interface Item {
@@ -95,10 +95,6 @@ const Points = () => {
       });
   }, [selectedItems]);
 
-  const handleNavigateBack = () => {
-    navigation.goBack();
-  };
-
   const handleNavigateToDetail = (id: number) => {
     navigation.navigate("Detail", { point_id: id });
   };
@@ -118,9 +114,7 @@ const Points = () => {
   return (
     <>
       <View style={styles.container}>
-        <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79" />
-        </TouchableOpacity>
+        <BackScreen />
 
         <Text style={styles.title}>Bem Vindo</Text>
         <Text style={styles.description}>

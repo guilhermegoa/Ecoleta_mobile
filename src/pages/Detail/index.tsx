@@ -9,11 +9,12 @@ import {
   Linking,
 } from "react-native";
 import { Feather as Icon, FontAwesome } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useRoute } from "@react-navigation/native";
 import { RectButton } from "react-native-gesture-handler";
 import * as MailComposer from "expo-mail-composer";
 import api from "../../services/api";
 
+import BackScreen from "../../components/BackScreen/index";
 import styles from "./styles";
 
 interface Params {
@@ -36,7 +37,6 @@ interface Data {
 
 const Detail = () => {
   const [data, setData] = useState<Data>({} as Data);
-  const navigation = useNavigation();
   const route = useRoute();
 
   const routeParams = route.params as Params;
@@ -46,10 +46,6 @@ const Detail = () => {
       setData(response.data);
     });
   }, []);
-
-  const handleNavigateBack = () => {
-    navigation.goBack();
-  };
 
   const handleComposeMail = () => {
     MailComposer.composeAsync({
@@ -68,9 +64,7 @@ const Detail = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={handleNavigateBack}>
-          <Icon name="arrow-left" size={20} color="#34cb79" />
-        </TouchableOpacity>
+        <BackScreen />
 
         <Image
           style={styles.pointImage}
