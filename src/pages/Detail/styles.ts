@@ -5,7 +5,7 @@ import Constants from "expo-constants";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 32,
+    paddingHorizontal: 16,
     paddingTop: 16 + Constants.statusBarHeight,
   },
 
