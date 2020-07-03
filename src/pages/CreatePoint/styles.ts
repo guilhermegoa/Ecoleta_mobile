@@ -4,7 +4,7 @@ import Constants from "expo-constants";
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     paddingHorizontal: 16,
     paddingTop: Constants.statusBarHeight,
   },
@@ -93,6 +93,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+    backgroundColor: colors.primary,
   },
 
   button: {
@@ -105,6 +106,28 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     color: colors.white,
+  },
+
+  buttonTextInvisible: {
+    color: colors.primary,
+  },
+
+  textSearchImage: {
+    color: colors.grey200,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  containerMarketImage: {
+    marginVertical: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  marketImage: {
+    height: 200,
+    width: "100%",
+    resizeMode: "contain",
   },
 });
 

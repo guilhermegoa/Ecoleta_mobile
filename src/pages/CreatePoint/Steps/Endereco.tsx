@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView } from "react-native";
-import MapView, { Marker } from "react-native-maps";
+import { View, Text, ScrollView, Alert } from "react-native";
+import MapView, { Marker, LatLng } from "react-native-maps";
+import * as Location from "expo-location";
 
 import apiIBGE from "../../../services/apiIBGE";
 import PickerSelect from "../../../components/PickerSelect/index";
@@ -19,11 +20,56 @@ interface OptionsPicker {
   value: string;
 }
 
-const Endereco = () => {
+interface latLng {
+  latitude: number;
+  longitude: number;
+}
+
+interface Props {
+  selectedUf: string;
+  setSelectedUf(data: string): void;
+  selectedCity: string;
+  setSelectedCity(data: string): void;
+  latLng: latLng;
+  setLatLng(data: LatLng): void;
+}
+
+const Endereco: React.FC<Props> = ({
+  selectedUf,
+  setSelectedUf,
+  selectedCity,
+  setSelectedCity,
+  latLng,
+  setLatLng,
+}) => {
   const [ufs, setUfs] = useState<OptionsPicker[]>([]);
-  const [selectedUf, setSelectedUf] = useState("");
   const [cities, setCities] = useState<OptionsPicker[]>([]);
-  const [selectedCity, setSelectedCity] = useState("");
+  const [intialPosisition, setInitialPosition] = useState<latLng>({
+    latitude: 0,
+    longitude: 0,
+  });
+
+  useEffect(() => {
+    async function loadPosition() {
+      const { status } = await Location.requestPermissionsAsync();
+
+      if (status !== "granted") {
+        Alert.alert(
+          "Ooooops",
+          "precisamos de sua permissão para obter a localização"
+        );
+        return;
+      }
+
+      const location = Location.getCurrentPositionAsync();
+
+      const { latitude, longitude } = (await location).coords;
+
+      setInitialPosition({ latitude, longitude });
+    }
+
+    loadPosition();
+  }, []);
 
   useEffect(() => {
     apiIBGE.get<IBGEUFResponse[]>("localidades/estados").then((response) => {
@@ -50,6 +96,13 @@ const Endereco = () => {
         setCities(cityNames);
       });
   }, [selectedUf]);
+
+  const handleSetLatLng = (event: latLng) => {
+    const { latitude, longitude } = event;
+
+    setLatLng({ latitude: latitude, longitude: longitude });
+  };
+
   return (
     <ScrollView>
       <View>
@@ -68,17 +121,33 @@ const Endereco = () => {
         placeholder="Selecione um Cidade."
       />
 
-      <View style={styles.mapContainer}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: -19.7755345,
-            longitude: -43.8577598,
-            latitudeDelta: 0.018,
-            longitudeDelta: 0.018,
-          }}
-        />
-      </View>
+      {intialPosisition.latitude !== 0 && (
+        <View style={styles.mapContainer}>
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: intialPosisition.latitude,
+              longitude: intialPosisition.longitude,
+              latitudeDelta: 0.018,
+              longitudeDelta: 0.018,
+            }}
+            onPress={(event) => handleSetLatLng(event.nativeEvent.coordinate)}
+          >
+            <Marker
+              style={{
+                backgroundColor: "red",
+                padding: 10,
+                width: 90,
+                height: 80,
+              }}
+              coordinate={{
+                latitude: latLng.latitude,
+                longitude: latLng.longitude,
+              }}
+            />
+          </MapView>
+        </View>
+      )}
     </ScrollView>
   );
 };
