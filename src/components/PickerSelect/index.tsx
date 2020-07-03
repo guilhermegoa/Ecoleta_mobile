@@ -31,12 +31,13 @@ const PickerSelect: React.FC<Props> = ({
       value={selected}
       style={{
         inputAndroid: {
-          color: colors.secondary,
+          color: colors.grey200,
         },
         viewContainer: {
           backgroundColor: colors.white,
           borderRadius: 8,
           marginBottom: 8,
+          paddingLeft: 16,
         },
       }}
     />
