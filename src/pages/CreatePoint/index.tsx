@@ -100,12 +100,24 @@ const CreatePoint = () => {
     data.append("items", items.join(","));
 
     if (marketImage) {
-      data.append("image", marketImage);
+      let fileNameSplited = marketImage.split("/");
+      let filename = fileNameSplited[fileNameSplited.length - 1];
+
+      data.append(
+        "image",
+        JSON.parse(
+          JSON.stringify({
+            uri: marketImage,
+            type: `image/jpg`,
+            name: filename,
+          })
+        )
+      );
     }
 
     console.log(data);
 
-    return;
+    // return;
 
     await api.post("points", data);
 

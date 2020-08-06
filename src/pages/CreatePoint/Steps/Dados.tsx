@@ -12,7 +12,7 @@ interface Props {
   setNome(data: string): void;
   setEmail(data: string): void;
   setWhatsapp(data: string): void;
-  setMarketImage(data: File): void;
+  setMarketImage(data: string): void;
 }
 
 const Dados: React.FC<Props> = ({
@@ -35,13 +35,15 @@ const Dados: React.FC<Props> = ({
     }
 
     let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    console.log(pickerResult);
 
     if (pickerResult.cancelled) {
       return;
     }
-    setMarketImage(pickerResult.uri);
-    setImageUri(pickerResult.uri);
+
+    const { uri } = pickerResult;
+
+    setMarketImage(uri);
+    setImageUri(uri);
   };
 
   return (
