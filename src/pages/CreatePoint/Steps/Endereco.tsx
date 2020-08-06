@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, Alert } from "react-native";
+import { View, Text, Alert } from "react-native";
 import MapView, { Marker, LatLng } from "react-native-maps";
 import * as Location from "expo-location";
 
@@ -104,7 +104,7 @@ const Endereco: React.FC<Props> = ({
   };
 
   return (
-    <ScrollView>
+    <View>
       <View>
         <Text style={styles.fomrSubTitle}>Endereço</Text>
       </View>
@@ -148,7 +148,7 @@ const Endereco: React.FC<Props> = ({
           </MapView>
         </View>
       )}
-    </ScrollView>
+    </View>
   );
 };
 
