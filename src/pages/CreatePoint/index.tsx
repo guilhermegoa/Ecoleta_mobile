@@ -115,7 +115,7 @@ const CreatePoint = () => {
       );
     }
 
-    console.log(data);
+    // console.log(data);
 
     await api.post("points", data);
 
